@@ -41,8 +41,39 @@ function Shop(){
     }
 
     const removeFromBasket = (itemId) => {
-        //console.log(itemId);
         const newOrder = order.filter((el) => el.mainId !== itemId);
+        setOrder(newOrder);
+    }
+
+    const incQuantity = (itemId) => {
+        //console.log('inc')
+        const newOrder = order.map(el => {
+            if(el.mainId === itemId){
+                const newQuantity = el.quantity + 1;
+                return{
+                    ...el,
+                    quantity: newQuantity
+                }
+            } else {
+                return el;
+            }
+        });
+        setOrder(newOrder);
+    }
+
+    const decQuantity = (itemId) => {
+        //console.log('dec')
+        const newOrder = order.map(el => {
+            if(el.mainId === itemId){
+                const newQuantity = el.quantity - 1;
+                return{
+                    ...el,
+                    quantity: newQuantity >=0 ? newQuantity: 0
+                }
+            } else {
+                return el;
+            }
+        });
         setOrder(newOrder);
     }
 
@@ -75,6 +106,8 @@ function Shop(){
                 order={order}
                 handleBasketShow={handleBasketShow}
                 removeFromBasket={removeFromBasket}
+                incQuantity = {incQuantity}
+                decQuantity = {decQuantity}
             />
         ) }
     </main>
