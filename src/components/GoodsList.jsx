@@ -16,7 +16,8 @@ function GoodsList(props){
                 //.offerId
                 //.mainId
                 if(item.mainId !== null){
-                    return <GoodsItem key={item.mainId} {...item} addToBasket={addToBasket} />
+                    // return <GoodsItem key={item.mainId} {...item} addToBasket={addToBasket} />
+                    return <GoodsItem key={item.offerId} {...item} addToBasket={addToBasket} />
                 }
             }
 
